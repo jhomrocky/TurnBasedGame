@@ -21,7 +21,7 @@ computer_hp = 100
 def show_status():
     global user_hp, computer_hp
     if computer_hp > 0 and user_hp > 0:
-        print("Current status:\nUser HP: %s\nComputer HP: %s" % (user_hp, computer_hp))
+        print("\nCurrent status:\nUser HP: %s\nComputer HP: %s\n" % (user_hp, computer_hp))
     elif computer_hp <= 0:
         computer_hp = 0
         print("Congratulations! The computer has %d hit points left. You won!" % computer_hp)
