@@ -22,12 +22,15 @@ def show_status():
     global user_hp, computer_hp
     if computer_hp > 0 and user_hp > 0:
         print("\nCurrent status:\nUser HP: %s\nComputer HP: %s\n" % (user_hp, computer_hp))
+    # if computer or user has no more HP left
     elif computer_hp <= 0:
         computer_hp = 0
         print("Congratulations! The computer has %d hit points left. You won!" % computer_hp)
         replay_game = input("Play again? Y for yes, N for no: ")
         replay_game = replay_game.lower()
         if replay_game == 'y':
+            user_hp = 100
+            computer_hp = 100
             play_game()
         else:
             print("Take care! Exiting...")
@@ -39,6 +42,8 @@ def show_status():
         replay_game = input("Play again? Y for yes, N for no: ")
         replay_game = replay_game.lower()
         if replay_game == 'y':
+            user_hp = 100
+            computer_hp = 100
             play_game()
         else:
             print("Take care! Exiting...")
