@@ -16,13 +16,29 @@ user_hp = 100
 computer_hp = 100
 
 
-
 # for showing HP of both computer and user
 def show_status():
     print("Current status:\nUser HP: %s\nComputer HP: %s" % (user_hp, computer_hp))
 
+
 # for executing a hit/heal for user
 def user_moves():
+    user_move_headbutt = randint(18-25)  # low range, moderate damage
+    user_move_kamehameha = randint(10-35)  # high range, high damage (can also be very low)
+    user_move_potion = randint(18-25)
+    user_move_choice = input("What move would you like to use?\n > ")
+    print("1 - Headbutt (low range of damage")
+    print("2 - Kamehameha (high range of damage")
+    print("3 - Drink Potion (heal)")
+    if user_move_choice == 1:
+
+    elif user_move_choice == 2:
+
+    elif user_move_choice == 3:
+
+    else:
+        print("Invalid input. Try again.")
+        user_moves()
 
 
 # for figuring out what move computer will use
@@ -30,25 +46,27 @@ def computer_move():
     global user_hp, computer_hp
 # make sure to include if hp < 35% (or something) then up the probability to heal
     comp_move_calc = randint(1, 100)
-    comp_light_hit_dmg = randint(18-25) # low range, moderate damage
-    comp_heavy_hit_dmg = randint(10-35) # high range, high damage (can also be very low)
-    comp_heal_amount = randint(18-25)
+    comp_move_punch = randint(18-25)
+    comp_move_hadoken = randint(10-35)
+    comp_move_heal = randint(18-25)
     # moves if comp hp > 35%
     if computer_hp > 35:
         # 30% chance to use light hit, 30% chance for other hit, 40% chance to heal
         if comp_move_calc in range(1,30):
-            user_hp -= comp_light_hit_dmg
+            user_hp -= comp_move_punch
         elif comp_move_calc in range(31,60):
-            user_hp -= comp_heavy_hit_dmg
+            user_hp -= comp_move_hadoken
         else:
-            computer_hp += comp_heal_amount
+            computer_hp += comp_move_heal
     elif 0 < computer_hp < 35:
         if comp_move_calc in range(1, 20):
-            user_hp -= comp_light_hit_dmg
+            user_hp -= comp_move_punch
         elif comp_move_calc in range(21, 40):
-            user_hp -= comp_heavy_hit_dmg
+            user_hp -= comp_move_hadoken
         else:
-            computer_hp += comp_heal_amount
+            computer_hp += comp_move_heal
+
+
 
 
 
