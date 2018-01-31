@@ -23,6 +23,7 @@ def show_status():
 
 # for executing a hit/heal for user
 def user_moves():
+    global user_hp, computer_hp
     user_move_headbutt = randint(18-25)  # low range, moderate damage
     user_move_kamehameha = randint(10-35)  # high range, high damage (can also be very low)
     user_move_potion = randint(18-25)
@@ -31,11 +32,17 @@ def user_moves():
     print("2 - Kamehameha (high range of damage")
     print("3 - Drink Potion (heal)")
     if user_move_choice == 1:
-
+        print("You used Headbutt! It did %d damage!" % user_move_headbutt)
+        computer_hp -= user_move_headbutt
+        show_status()
     elif user_move_choice == 2:
-
+        print("You used Kamehameha! It did %d damage!" % user_move_kamehameha)
+        computer_hp -= user_move_kamehameha
+        show_status()
     elif user_move_choice == 3:
-
+        print("You used a potion! You gained %d health." % user_move_potion)
+        user_hp += user_move_potion
+        show_status()
     else:
         print("Invalid input. Try again.")
         user_moves()
@@ -44,27 +51,36 @@ def user_moves():
 # for figuring out what move computer will use
 def computer_move():
     global user_hp, computer_hp
-# make sure to include if hp < 35% (or something) then up the probability to heal
     comp_move_calc = randint(1, 100)
     comp_move_punch = randint(18-25)
     comp_move_hadoken = randint(10-35)
     comp_move_heal = randint(18-25)
-    # moves if comp hp > 35%
-    if computer_hp > 35:
-        # 30% chance to use light hit, 30% chance for other hit, 40% chance to heal
+    # if comp HP is under 35%, the probability it uses heal goes up to 60%
+    if computer_hp > 35:  # 30% chance to use light hit, 30% chance for other hit, 40% chance to heal
         if comp_move_calc in range(1,30):
+            print("Computer used punch! It did %d damage." % comp_move_punch)
             user_hp -= comp_move_punch
+            show_status()
         elif comp_move_calc in range(31,60):
+            print("Computer used Hadoken! It did %d damage." % comp_move_hadoken)
             user_hp -= comp_move_hadoken
+            show_status()
         else:
+            print("Computer healed! It gained %d health." % comp_move_heal)
             computer_hp += comp_move_heal
-    elif 0 < computer_hp < 35:
+    elif 0 < computer_hp < 35:  # if on low hp, chance to heal goes up to 60%
         if comp_move_calc in range(1, 20):
+            print("Computer used punch! It did %d damage." % comp_move_punch)
             user_hp -= comp_move_punch
+            show_status()
         elif comp_move_calc in range(21, 40):
+            print("Computer used Hadoken! It did %d damage." % comp_move_hadoken)
             user_hp -= comp_move_hadoken
+            show_status()
         else:
+            print("Computer healed! It gained %d health." % comp_move_heal)
             computer_hp += comp_move_heal
+            show_status()
 
 
 
